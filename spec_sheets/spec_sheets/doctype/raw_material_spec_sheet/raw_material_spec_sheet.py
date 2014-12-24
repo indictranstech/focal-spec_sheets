@@ -6,7 +6,9 @@ import frappe
 from frappe.model.document import Document
 
 class RawMaterialSpecSheet(Document):
+	
 	def get_details(self):
+		list1=[]
 		jo=frappe.get_doc('Job Order',self.job_order)
 		joc=jo.get('raw_material_costing')
 		for j in joc:
@@ -24,5 +26,5 @@ class RawMaterialSpecSheet(Document):
 			c_obj.part_name=jo.part_name
 			c_obj.part_no=jo.part_no
 			c_obj.drawing_no=jo.drawing_no
-		
-		return "done"
+			list1.append(c_obj)
+		return list1

@@ -6,6 +6,7 @@ cur_frm.cscript.job_order=function(){
 			method: "get_details",
 			callback: function(r) {
 				console.log("in the callback");
+				console.log(r.message);
 				refresh_field(['pm_costing_spec_details','type','vendor']);
 			}
 		});
