@@ -1,12 +1,9 @@
 
 cur_frm.cscript.job_order=function(){
-	console.log("in the joborder");
 	return frappe.call({
 			doc: cur_frm.doc,
 			method: "get_details",
 			callback: function(r) {
-				console.log("in the callback");
-				console.log(r.message);
 				refresh_field(['pm_costing_spec_details','type','vendor']);
 			}
 		});
