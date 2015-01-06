@@ -9,7 +9,6 @@ cur_frm.cscript.job_order=function(){
 		});
 }
 cur_frm.cscript.supplier=function(doc,cdt,cdn){
-	console.log("in the supplier address");
 	frappe.call({
 		method: "erpnext.buying.doctype.po_material.po_material.get_address",
 		args:{"supplier":doc.supplier},
