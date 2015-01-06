@@ -10,7 +10,6 @@ class RawMaterialSpecSheet(Document):
 	def get_details(self):
 		list1=[]
 		job=frappe.db.sql("select job_order,part_name,part_no,drawing_no from `tabJob Order` where name='%s'"%(self.job_order),as_list=1)
-		frappe.errprint(job)
 		jo=frappe.get_doc('Job Order',self.job_order)
 		joc=jo.get('raw_material_costing')
 		# frappe.errprint(joc)
@@ -34,7 +33,6 @@ class RawMaterialSpecSheet(Document):
 			return list1
 
 		else:
-			frappe.errprint("hii")
 			c_obj=self.append('raw_material_specs_details',{})
 			c_obj.job_order=job[0][0]
 			c_obj.part_name=job[0][1]
