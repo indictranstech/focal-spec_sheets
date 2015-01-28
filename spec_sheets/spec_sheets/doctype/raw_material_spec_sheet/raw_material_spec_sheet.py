@@ -6,6 +6,10 @@ import frappe
 from frappe.model.document import Document
 
 class RawMaterialSpecSheet(Document):
+
+	def on_submit(self):
+		frappe.db.sql("update `tabJob Order` set material_status='Received' where name='%s'"%(self.job_order))
+		frappe.db.commit()
 	
 	def get_details(self):
 		list1=[]
@@ -34,9 +38,9 @@ class RawMaterialSpecSheet(Document):
 
 		else:
 			c_obj=self.append('raw_material_specs_details',{})
-			c_obj.job_order=job[0][0]
-			c_obj.part_name=job[0][1]
-			c_obj.part_no=job[0][2]
-			c_obj.drawing_no=job[0][3]
+			c_obj.job_order=jo.job_order
+			c_obj.part_name=jo.part_name
+			c_obj.part_no=jo.part_no
+			c_obj.drawing_no=jo.drawing_no
 			list1.append(c_obj)
 			return list1

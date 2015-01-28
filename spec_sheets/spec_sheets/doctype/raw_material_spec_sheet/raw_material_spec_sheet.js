@@ -5,6 +5,8 @@ cur_frm.add_fetch('job_order', 'part_name', 'part_name');
 cur_frm.add_fetch('job_order', 'material_type', 'material_type');
 cur_frm.add_fetch('job_order', 'drawing_no', 'drawing_no');
 cur_frm.add_fetch('job_order', 'qty', 'quantity');
+cur_frm.add_fetch('job_order', 'part_no', 'part_no');
+
 
 cur_frm.cscript.job_order=function(doc, cdt, cdn){
 	console.log(doc.job_order)
