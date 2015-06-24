@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+from frappe import _
 
 class RawMaterialSpecSheet(Document):
 
@@ -16,7 +17,6 @@ class RawMaterialSpecSheet(Document):
 		job=frappe.db.sql("select job_order,part_name,part_no,drawing_no from `tabJob Order` where name='%s'"%(self.job_order),as_list=1)
 		jo=frappe.get_doc('Job Order',self.job_order)
 		joc=jo.get('raw_material_costing')
-		# frappe.errprint(joc)
 		if joc:
 			for j in joc:
 				c_obj=self.append('raw_material_specs_details',{})
@@ -44,3 +44,5 @@ class RawMaterialSpecSheet(Document):
 			c_obj.drawing_no=jo.drawing_no
 			list1.append(c_obj)
 			return list1
+
+	

@@ -9,7 +9,7 @@ cur_frm.add_fetch('job_order', 'part_no', 'part_no');
 
 
 cur_frm.cscript.job_order=function(doc, cdt, cdn){
-	console.log(doc.job_order)
+	
 	if (doc.job_order){
 		set_field_permlevel("job_order",1)
 		refresh_field('job_order')
@@ -18,18 +18,9 @@ cur_frm.cscript.job_order=function(doc, cdt, cdn){
 			doc: cur_frm.doc,
 			method: "get_details",
 			callback: function(r) {
-				// console.log(r.message.length);
-				// for(i=0;i<r.message.length;i++){
-					// if(r.message[i].od!=null)
-						set_field_permlevel("od",1)
-						refresh_field('od')
-
-				
-				// }
-
+				set_field_permlevel("od",1)
+				refresh_field('od')
 				refresh_field(['raw_material_specs_details','qty']);
-				
-
 			}
 		});
 }
@@ -57,4 +48,8 @@ cur_frm.cscript.supplier=function(doc,cdt,cdn){
 			refresh_field("address_display")
 		}
 	});
+}
+
+cur_frm.cscript.before_submit=function(doc,cdt,cdn){
+	msgprint("Job Order Material Status Updated to recieved")
 }
