@@ -12,6 +12,10 @@ class RawMaterialSpecSheet(Document):
 		frappe.db.sql("update `tabJob Order` set material_status='Received' where name='%s'"%(self.job_order))
 		frappe.db.commit()
 	
+	def on_cancel(self):
+		frappe.db.sql("update `tabJob Order` set material_status='Yet to Receive' where name='%s'"%(self.job_order))
+		frappe.db.commit()	
+
 	def get_details(self):
 		list1=[]
 		job=frappe.db.sql("select job_order,part_name,part_no,drawing_no from `tabJob Order` where name='%s'"%(self.job_order),as_list=1)
