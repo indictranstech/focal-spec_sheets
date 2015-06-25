@@ -51,5 +51,7 @@ cur_frm.cscript.supplier=function(doc,cdt,cdn){
 }
 
 cur_frm.cscript.validate = function(doc,cdt,cdn){
-	msgprint("check and submit/cancel as the submission will affect the Job Order Material status.")
+	if (doc.__unsaved==1){
+		msgprint("check and submit/cancel as the submission will affect the Job Order Material status.")
+	}
 }
